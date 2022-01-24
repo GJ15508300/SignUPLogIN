@@ -36,7 +36,6 @@ const ICON = {
   marginLeft: 7,
 };
 function LogIn() {
-  // let iconStyle = enhance(ICON, iconStyleOverride);
   const [isSecureEntry, setIsSecureEntry] = useState(true);
   return (
     <>
@@ -72,10 +71,10 @@ function LogIn() {
               touched,
             }) => (
               <View style={styles.ViewStyle}>
-                <Text style={{fontWeight: 'bold', color: 'red'}}>
+                <Text style={{fontWeight: 'bold', color: 'red', fontSize: 20}}>
                   User Name
                 </Text>
-                <TextInput
+                <Input
                   placeholder="Email"
                   onChangeText={handleChange('email')}
                   onBlur={handleBlur('email')}
@@ -85,7 +84,9 @@ function LogIn() {
                 {errors.email && touched.email && (
                   <Text style={{color: 'red'}}>{errors.email}</Text>
                 )}
-                <Text style={{fontWeight: 'bold', color: 'red'}}>Password</Text>
+                <Text style={{fontWeight: 'bold', color: 'red', fontSize: 20}}>
+                  Password
+                </Text>
                 <Input
                   placeholder="Password"
                   onChangeText={handleChange('password')}
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
   },
   ViewStyle: {
-    flex: 1,
+    // flex: 1,
     // backgroundColor: 'rgba(192, 192, 192, .6)',
     padding: 20,
   },
