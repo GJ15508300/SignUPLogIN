@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "57732879278",
+    "project_id": "signupform-f7748",
+    "storage_bucket": "signupform-f7748.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57732879278:android:2076c8358dffc8933f2e3f",
+        "android_client_info": {
+          "package_name": "com.signupfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57732879278-muv40v5q2npfse5ckdimglprgocn6v3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRtmHTuy2OdehD8bVzUq52UUa2lOWzuM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57732879278-muv40v5q2npfse5ckdimglprgocn6v3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
