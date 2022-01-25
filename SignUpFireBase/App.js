@@ -7,6 +7,7 @@ const Stack = createStackNavigator();
 import {LogBox} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import LogIn from './src/Screen/LogIn';
+import LoggedIN from './src/Screen/LoggedIN';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
@@ -24,6 +25,7 @@ function App() {
         <Stack.Screen name="Home" component={LogInSignUpOption} />
         <Stack.Screen name="SignUPScreen" component={FSignUp} />
         <Stack.Screen name="LogInScreen" component={LogIn} />
+        <Stack.Screen name="LoggedIN" component={LoggedIN} />
       </Stack.Navigator>
     </NavigationContainer>
   );

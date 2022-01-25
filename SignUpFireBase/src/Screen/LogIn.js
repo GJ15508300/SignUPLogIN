@@ -15,6 +15,12 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Input, Icon} from 'react-native-elements';
 import {CheckLogin} from '../FireBase/CheckLogin';
 import {LoginButton, AccessToken} from 'react-native-fbsdk-next';
+import {useNavigation} from '@react-navigation/native';
+let CheckData = false;
+function CheckLogINData() {
+  console.log('CheckDAta', CheckData);
+  CheckData = CheckLogin();
+}
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
@@ -36,7 +42,9 @@ const ICON = {
   marginLeft: 7,
 };
 function LogIn() {
+  const navigation = useNavigation();
   const [isSecureEntry, setIsSecureEntry] = useState(true);
+  const [LogInCheck, setLogInCheck] = useState(false);
   return (
     <>
       <ImageBackground
@@ -61,7 +69,15 @@ function LogIn() {
           <Formik
             initialValues={{email: '', password: ''}}
             validationSchema={SignupSchema}
-            onSubmit={values => console.log(values)}>
+            onSubmit={values => {
+              console.log('submit values', values),
+                CheckLogin(
+                  values.email,
+                  values.password,
+                  // (setLogInCheck = {setLogInCheck}),
+                ),
+                navigation.navigate('LoggedIN');
+            }}>
             {({
               handleChange,
               handleBlur,
@@ -128,12 +144,12 @@ function LogIn() {
                   <LoginButton
                     onLoginFinished={(error, result) => {
                       if (error) {
-                        // console.log('login error:', result.error);
+                        console.log('login error:', result.error);
                       } else if (result.isCancelled) {
                         console.log('login cancel');
                       } else {
                         AccessToken.getCurrentAccessToken().then(data => {
-                          console.log(data.accessToken.toString());
+                          console.log('tokent', data.accessToken.toString());
                         });
                       }
                     }}

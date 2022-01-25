@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import * as React from 'react';
 import {
@@ -40,6 +41,7 @@ const SignupSchema = Yup.object().shape({
   }),
 });
 function FSignUp() {
+  const navigation = useNavigation();
   return (
     <View style={{flex: 1}}>
       <ImageBackground
@@ -59,20 +61,22 @@ function FSignUp() {
               confirmPassword: '',
             }}
             validationSchema={SignupSchema}
-            onSubmit={values => {
-              console.log(
-                'submit values',
-                values,
-                'values.firstName',
-                values.firstName,
-              ),
-                AddNewDataBase(
-                  values.firstName,
-                  values.lastName,
-                  values.email,
-                  values.password,
-                );
-            }}>
+            onSubmit={
+              values => {
+                console.log('submit values', values),
+                  AddNewDataBase(
+                    values.firstName,
+                    values.lastName,
+                    values.email,
+                    values.password,
+                  ),
+                  navigation.navigate('LogInScreen');
+              }
+              // ;() => {
+              //   console.log('Entery');
+              //   navigation.navigate('SignUPScreen');
+              // }
+            }>
             {({
               handleChange,
               handleBlur,
