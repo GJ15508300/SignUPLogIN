@@ -76,7 +76,8 @@ function LogIn() {
                   values.password,
                   // (setLogInCheck = {setLogInCheck}),
                 ),
-                navigation.navigate('LoggedIN');
+                // navigation.navigate('LoggedIN');
+                navigation.navigate('ImagePicker');
             }}>
             {({
               handleChange,

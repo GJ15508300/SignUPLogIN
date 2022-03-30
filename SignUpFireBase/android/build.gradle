@@ -35,9 +35,15 @@ allprojects {
             // older versions over there.
             content {
                 excludeGroup "com.facebook.react"
+                // includeModule("com.yqritc", "android-scalablevideoview")
             }
         }
         google()
+        jcenter()
         maven { url 'https://www.jitpack.io' }
+        // jcenter() {
+        //     content {
+        //         includeModule("com.yqritc", "android-scalablevideoview")
+        //     }
     }
 }

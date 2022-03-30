@@ -58,6 +58,16 @@ function LogInSignUpOption() {
                 }}
               />
             </View>
+            <View>
+              <Button
+                title="Image Picker"
+                color={'transparent'}
+                borderRadius="50"
+                onPress={() => {
+                  navigation.navigate('ImagePicker');
+                }}
+              />
+            </View>
           </View>
         </View>
       </ImageBackground>
