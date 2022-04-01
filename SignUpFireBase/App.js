@@ -9,6 +9,7 @@ import SplashScreen from 'react-native-splash-screen';
 import LogIn from './src/Screen/LogIn';
 import LoggedIN from './src/Screen/LoggedIN';
 import ImagePicker from './src/Screen/ImagePicker';
+import VideoShow from './src/Screen/VideoShow';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
@@ -28,6 +29,7 @@ function App() {
         <Stack.Screen name="LogInScreen" component={LogIn} />
         <Stack.Screen name="LoggedIN" component={LoggedIN} />
         <Stack.Screen name="ImagePicker" component={ImagePicker} />
+        <Stack.Screen name="VideoShow" component={VideoShow} />
       </Stack.Navigator>
     </NavigationContainer>
   );

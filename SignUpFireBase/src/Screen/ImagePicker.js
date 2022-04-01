@@ -7,11 +7,12 @@ import {
   Platform,
   SafeAreaView,
   StyleSheet,
+  ScrollView,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Video from 'react-native-video';
 // import Video from 'react-native-video';
@@ -242,99 +243,108 @@ function ImagePicker({route}) {
       }
     });
   };
-
+  useEffect(() => {
+    if (videoFilePath || captureVideo) {
+      navigation.navigate('VideoShow', {
+        videoFilePath: videoFilePath,
+        captureVideo: captureVideo,
+      });
+    }
+  }, [captureVideo, navigation, videoFilePath]);
   return (
     <View style={styles.ViewStyle}>
-      {/* <SafeAreaView style={{flex: 1}}> */}
-      <Text style={styles.titleText}>Image Picker in React Native</Text>
-      <View style={styles.container}>
-        <View style={{flexDirection: 'row'}}>
-          {imageFilePath ||
-            (captureImageS && (
-              <>
-                {console.log('photo', imageFilePath)}
-                <View style={styles.ImageStyleView}>
-                  <Image
-                    source={{uri: imageFilePath || captureImageS}}
-                    style={styles.imageStyle}
-                    borderRadius={100}
-                  />
-                </View>
-              </>
-            ))}
-          {videoFilePath ||
-            (captureVideo && (
-              <>
-                {console.log('videoFilePath', videoFilePath)}
-                <View style={styles.ImageStyleView}>
-                  <Video
-                    source={{
-                      uri: videoFilePath || captureVideo,
-                    }}
-                    style={{width: 200, height: 300}}
-                    controls={true}
-                    // onBuffer={this.videoBuffer}
-                    ref={ref => (videoPlayer.current = ref)}
-                    // paused={false}
-                    repeat={true}
-                    paused={!isPlaying}
-                    muted={isMuted}
-                  />
-                  {/* <Button
-                    // style={{width: 10, height: 10}}
-                    onPress={() => setIsPlaying(p => !p)}
-                    title={isPlaying ? 'Stop' : 'Play'}
-                  />
-                  <Button
-                    onPress={() => setIsMuted(m => !m)}
-                    title={isMuted ? 'Unmute' : 'Mute'}
-                  /> */}
-                </View>
-              </>
-            ))}
-        </View>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.buttonStyle}
-          // onPress={() => captureImage('photo')}>
-          onPress={() => {
-            handleTakePic('photo');
-          }}>
-          <Text style={styles.textStyle}>Launch Camera for Image</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          // onPress={() => captureImage('video')}>
-          onPress={() => {
-            handleTakePic('video');
-          }}>
-          <Text style={styles.textStyle}>Launch Camera for Video</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          // onPress={() => chooseFile('photo')}>
-          onPress={() => {
-            handleUploadPhoto('photo');
-          }}>
-          <Text style={styles.textStyle}>Choose Image</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          // onPress={() => chooseFile('video')}>
-          onPress={() => {
-            handleUploadPhoto('video');
-          }}>
-          <Text style={styles.textStyle}>Choose Video</Text>
-        </TouchableOpacity>
+      <ScrollView>
+        <SafeAreaView style={{flex: 1}}>
+          <Text style={styles.titleText}>Image Picker in React Native</Text>
+          <View style={styles.container}>
+            <View style={{flexDirection: 'column'}}>
+              {imageFilePath ||
+                (captureImageS && (
+                  <>
+                    {console.log('photo', imageFilePath)}
+                    <View style={styles.ImageStyleView}>
+                      <Image
+                        source={{uri: imageFilePath || captureImageS}}
+                        style={styles.imageStyle}
+                        borderRadius={100}
+                      />
+                    </View>
+                  </>
+                ))}
+              {videoFilePath ||
+                (captureVideo && (
+                  <>
+                    {console.log('videoFilePath', videoFilePath)}
+                    <View style={styles.ImageStyleView}>
+                      <Video
+                        source={{
+                          uri: videoFilePath || captureVideo,
+                        }}
+                        style={styles.video}
+                        controls={true}
+                        ref={ref => (videoPlayer.current = ref)}
+                        repeat={true}
+                        paused={!isPlaying}
+                        muted={isMuted}
+                        resizeMode={'cover'}
+                        // volume={true}
+                      />
+                      <Button
+                        style={{width: 10, height: 10}}
+                        onPress={() => setIsPlaying(p => !p)}
+                        title={isPlaying ? 'Stop' : 'Play'}
+                      />
+                      <Button
+                        onPress={() => setIsMuted(m => !m)}
+                        title={isMuted ? 'Unmute' : 'Mute'}
+                      />
+                    </View>
+                  </>
+                ))}
+            </View>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={styles.buttonStyle}
+              // onPress={() => captureImage('photo')}>
+              onPress={() => {
+                handleTakePic('photo');
+              }}>
+              <Text style={styles.textStyle}>Launch Camera for Image</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              // onPress={() => captureImage('video')}>
+              onPress={() => {
+                handleTakePic('video');
+              }}>
+              <Text style={styles.textStyle}>Launch Camera for Video</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              // onPress={() => chooseFile('photo')}>
+              onPress={() => {
+                handleUploadPhoto('photo');
+              }}>
+              <Text style={styles.textStyle}>Choose Image</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              // onPress={() => chooseFile('video')}>
+              onPress={() => {
+                handleUploadPhoto('video');
+              }}>
+              <Text style={styles.textStyle}>Choose Video</Text>
+            </TouchableOpacity>
 
-        <Text style={styles.textStyle}>
-          {imageFilePath}
-          {videoFilePath}
-          {captureImageS}
-          {captureVideo}
-        </Text>
-      </View>
-      {/* </SafeAreaView> */}
+            <Text style={styles.textStyle}>
+              {imageFilePath}
+              {videoFilePath}
+              {captureImageS}
+              {captureVideo}
+            </Text>
+          </View>
+        </SafeAreaView>
+      </ScrollView>
     </View>
   );
 }
@@ -386,8 +396,16 @@ const styles = StyleSheet.create({
     right: 0,
   },
   ImageStyleView: {
-    flex: 1,
+    // flex: 1,
     alignSelf: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'space-evenly',
+  },
+  video: {
+    // width: Dimensions.get('window').width,
+    // height: Dimensions.get('window').width * (9 / 16),
+    // height: Dimensions.get('window').height,
+    width: 300,
+    height: 200,
+    backgroundColor: 'black',
   },
 });
