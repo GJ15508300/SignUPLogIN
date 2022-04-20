@@ -18,7 +18,7 @@ import Video from 'react-native-video';
 // import Video from 'react-native-video';
 
 function ImagePicker({route}) {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const [imageFilePath, setImageFilePath] = useState();
   const [videoFilePath, setVideoFilePath] = useState();
   const [photo, setPhotoURI] = useState(null);
@@ -243,14 +243,14 @@ function ImagePicker({route}) {
       }
     });
   };
-  useEffect(() => {
-    if (videoFilePath || captureVideo) {
-      navigation.navigate('VideoShow', {
-        videoFilePath: videoFilePath,
-        captureVideo: captureVideo,
-      });
-    }
-  }, [captureVideo, navigation, videoFilePath]);
+  // useEffect(() => {
+  //   if (videoFilePath || captureVideo) {
+  //     navigation.navigate('VideoShow', {
+  //       videoFilePath: videoFilePath,
+  //       captureVideo: captureVideo,
+  //     });
+  //   }
+  // }, [captureVideo, navigation, videoFilePath]);
   return (
     <View style={styles.ViewStyle}>
       <ScrollView>

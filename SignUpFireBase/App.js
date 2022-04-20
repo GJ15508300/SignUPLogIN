@@ -10,6 +10,8 @@ import LogIn from './src/Screen/LogIn';
 import LoggedIN from './src/Screen/LoggedIN';
 import ImagePicker from './src/Screen/ImagePicker';
 import VideoShow from './src/Screen/VideoShow';
+import DashBoard from './src/Screen/DashBoard';
+import SQLiteSignUp from './src/Screen/SQLiteSignUp';
 
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
@@ -24,12 +26,14 @@ function App() {
         screenOptions={{
           headerShown: false,
         }}>
+        <Stack.Screen name="DashBoard" component={DashBoard} />
         <Stack.Screen name="Home" component={LogInSignUpOption} />
         <Stack.Screen name="SignUPScreen" component={FSignUp} />
         <Stack.Screen name="LogInScreen" component={LogIn} />
         <Stack.Screen name="LoggedIN" component={LoggedIN} />
         <Stack.Screen name="ImagePicker" component={ImagePicker} />
         <Stack.Screen name="VideoShow" component={VideoShow} />
+        <Stack.Screen name="SQLiteSignUp" component={SQLiteSignUp} />
       </Stack.Navigator>
     </NavigationContainer>
   );
